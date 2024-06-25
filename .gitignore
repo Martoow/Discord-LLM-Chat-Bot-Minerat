@@ -1,0 +1,12 @@
+#ignore the venv direcories
+/venv
+
+# ignore key files and txt
+*.txt
+*.key
+
+# ignore the python key handler script
+keyHandler.py
+
+# ignore the pycache__/
+__pycache__/
