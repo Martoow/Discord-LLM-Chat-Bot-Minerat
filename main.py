@@ -54,7 +54,7 @@ async def repeat(ctx, times: int, content='repeating...'):
 @bot.command()
 async def minerat(ctx, LLMprompt: str):
     """Sends a prompt to the LLM"""
-    print(LLMprompt)
+    print("Processing: " + LLMprompt)
     LLMprompt = PROMPT_INIT + "Q: " + LLMprompt + " A: "
     output = llm(
             str(LLMprompt), # Prompt
@@ -66,7 +66,8 @@ async def minerat(ctx, LLMprompt: str):
     totalTokens = output['usage']['total_tokens']
     print("Total tokens: " + str(totalTokens))
     textOutput = re.sub('.*\n.*\n.*A:', '', textOutput)
-    print(textOutput)
+    print("Q: " + LLMprompt)
+    print("A: " + textOutput)
     await ctx.channel.send(textOutput)
 
 bot.run(token)
