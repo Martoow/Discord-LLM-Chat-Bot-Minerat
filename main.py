@@ -74,7 +74,7 @@ class myClient(discord.Client):
                 case ['--help']:
                     await message.channel.send("## Available commands:\n **-p** or **--personas**: lists the available personas available for prompts.")
                 case ['skritchit', prompt]:
-                    personaName = "skritchit"
+                    personaName = 'skritchit'
                     promptArray = []
                     promptArray.append(prompt)
                     print("Your prompt to " + personaName + ": " + prompt)
@@ -109,6 +109,16 @@ class myClient(discord.Client):
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
                     await message.channel.send(chatbotReply)
+                case ['scriptus', prompt]:
+                    personaName = elementArray[0]
+                    promptArray = []
+                    promptArray.append(prompt)
+                    print("Your prompt to " + personaName + ": " + prompt)
+                    promptInit = fetchPromptInit(personaName)
+                    promptArray.append(promptInit)
+                    chatbotReply = self.chatbot_prompt(promptArray)
+                    await message.channel.send(chatbotReply)
+
                 case other:
                     print("Bad command.")
 
