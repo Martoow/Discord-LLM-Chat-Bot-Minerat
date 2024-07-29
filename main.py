@@ -81,7 +81,7 @@ class myClient(discord.Client):
                     promptInit = fetchPromptInit(personaName)
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
-                    await message.channel.send(chatbotReply)
+                    await message.reply(chatbotReply)
                 case ['justicia', prompt]:
                     personaName = "justicia"
                     promptArray = []
@@ -90,7 +90,12 @@ class myClient(discord.Client):
                     promptInit = fetchPromptInit(personaName)
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
-                    await message.channel.send(chatbotReply)
+                    if (len(chatbotReply) >= 2000):
+                        while(len(chatbotReply) >= 1):
+                            chatbotPost = chatbotReply[0:1999]
+                            del chatbotReply[:1999]
+                            await message.reply(chatbotPost)
+                    else: await message.reply(chatbotReply)
                 case ['cogitatus', prompt]:
                     personaName = "cogitatus"
                     promptArray = []
@@ -99,7 +104,7 @@ class myClient(discord.Client):
                     promptInit = fetchPromptInit(personaName)
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
-                    await message.channel.send(chatbotReply)
+                    await message.reply(chatbotReply)
                 case ['deadpool', prompt]:
                     personaName = "deadpool"
                     promptArray = []
@@ -108,7 +113,7 @@ class myClient(discord.Client):
                     promptInit = fetchPromptInit(personaName)
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
-                    await message.channel.send(chatbotReply)
+                    await message.reply(chatbotReply)
                 case ['scriptus', prompt]:
                     personaName = elementArray[0]
                     promptArray = []
@@ -117,7 +122,7 @@ class myClient(discord.Client):
                     promptInit = fetchPromptInit(personaName)
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
-                    await message.channel.send(chatbotReply)
+                    await message.reply(chatbotReply)
 
                 case other:
                     print("Bad command.")
