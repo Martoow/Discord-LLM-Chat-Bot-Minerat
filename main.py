@@ -81,7 +81,12 @@ class myClient(discord.Client):
                     promptInit = fetchPromptInit(personaName)
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
-                    await message.reply(chatbotReply)
+                    if (len(chatbotReply) >= 2000):
+                        while(len(chatbotReply) >= 1):
+                            chatbotPost = chatbotReply[0:1999]
+                            chatbotReply = chatbotReply[1999:]
+                            await message.reply(chatbotPost)
+                    else: await message.reply(chatbotReply)
                 case ['justicia', prompt]:
                     personaName = "justicia"
                     promptArray = []
@@ -104,7 +109,12 @@ class myClient(discord.Client):
                     promptInit = fetchPromptInit(personaName)
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
-                    await message.reply(chatbotReply)
+                    if (len(chatbotReply) >= 2000):
+                        while(len(chatbotReply) >= 1):
+                            chatbotPost = chatbotReply[0:1999]
+                            chatbotReply = chatbotReply[1999:]
+                            await message.reply(chatbotPost)
+                    else: await message.reply(chatbotReply)
                 case ['deadpool', prompt]:
                     personaName = "deadpool"
                     promptArray = []
@@ -113,7 +123,12 @@ class myClient(discord.Client):
                     promptInit = fetchPromptInit(personaName)
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
-                    await message.reply(chatbotReply)
+                    if (len(chatbotReply) >= 2000):
+                        while(len(chatbotReply) >= 1):
+                            chatbotPost = chatbotReply[0:1999]
+                            chatbotReply = chatbotReply[1999:]
+                            await message.reply(chatbotPost)
+                    else: await message.reply(chatbotReply)
                 case ['scriptus', prompt]:
                     personaName = elementArray[0]
                     promptArray = []
@@ -122,8 +137,12 @@ class myClient(discord.Client):
                     promptInit = fetchPromptInit(personaName)
                     promptArray.append(promptInit)
                     chatbotReply = self.chatbot_prompt(promptArray)
-                    await message.reply(chatbotReply)
-
+                    if (len(chatbotReply) >= 2000):
+                        while(len(chatbotReply) >= 1):
+                            chatbotPost = chatbotReply[0:1999]
+                            chatbotReply = chatbotReply[1999:]
+                            await message.reply(chatbotPost)
+                    else: await message.reply(chatbotReply)
                 case other:
                     print("Bad command.")
 
