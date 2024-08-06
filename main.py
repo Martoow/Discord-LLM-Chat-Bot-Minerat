@@ -93,7 +93,7 @@ class myClient(discord.Client):
                     if (len(chatbotReply) >= 2000):
                         while(len(chatbotReply) >= 1):
                             chatbotPost = chatbotReply[0:1999]
-                            del chatbotReply[:1999]
+                            chatbotReply = chatbotReply[1999:]
                             await message.reply(chatbotPost)
                     else: await message.reply(chatbotReply)
                 case ['cogitatus', prompt]:
