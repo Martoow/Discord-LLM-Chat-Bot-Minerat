@@ -49,7 +49,7 @@ class myClient(discord.Client):
         totalTokens = output['usage']['total_tokens']
         print(textOutput)
         print("Total tokens: " + str(totalTokens))
-        textOutput = re.sub('.*\n.*\n.*A:', '', textOutput)
+        textOutput = re.sub('(.*\n)*.*A:', '', textOutput)
         return textOutput
 
     async def on_message(self, message):
@@ -156,7 +156,7 @@ class myClient(discord.Client):
                             chatbotReply = chatbotReply[1999:]
                             await message.reply(chatbotPost)
                     else: await message.reply(chatbotReply)
-                case ['minerat', prompt]:
+                case ['llm', prompt]:
                     personaName = elementArray[0]
                     promptArray = []
                     promptArray.append(prompt)
