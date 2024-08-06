@@ -61,7 +61,7 @@ class myClient(discord.Client):
             elementArray.pop(0)
             match elementArray:
                 case ['--personas']:
-                    await message.channel.send("## Available personas:\n - **Minerat**, a Skaven clanrat with a penchant for mines.\n- **Justicia**, a Zealot in the service of big E himself.\n- **Cogitatus**, a Mechanicus Enginseer who runs on callous cold logic.")
+                    await message.channel.send("## Available personas:\n - **Minerat**, a Skaven clanrat with a penchant for mines.\n- **Justicia**, a Zealot in the service of big E himself.\n- ")
                 case ['--help']:
                     await message.channel.send("## Available commands:\n **-p** or **--personas**: lists the available personas available for prompts.")
                 case ['skritchit', prompt]:
@@ -80,20 +80,6 @@ class myClient(discord.Client):
                     else: await message.reply(chatbotReply)
                 case ['justicia', prompt]:
                     personaName = "justicia"
-                    promptArray = []
-                    promptArray.append(prompt)
-                    print("Your prompt to " + personaName + ": " + prompt)
-                    promptInit = fetchPromptInit(personaName)
-                    promptArray.append(promptInit)
-                    chatbotReply = self.chatbot_prompt(promptArray)
-                    if (len(chatbotReply) >= 2000):
-                        while(len(chatbotReply) >= 1):
-                            chatbotPost = chatbotReply[0:1999]
-                            chatbotReply = chatbotReply[1999:]
-                            await message.reply(chatbotPost)
-                    else: await message.reply(chatbotReply)
-                case ['cogitatus', prompt]:
-                    personaName = "cogitatus"
                     promptArray = []
                     promptArray.append(prompt)
                     print("Your prompt to " + personaName + ": " + prompt)
