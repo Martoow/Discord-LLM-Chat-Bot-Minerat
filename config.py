@@ -32,9 +32,3 @@ def fetchPromptInit(persona):
     prompt_init = f"""{persona_desc!s} 
 Pretend you are {persona_name!s}. Below is an instruction that describes a task. Write a response that appropriately completes this task."""
     return prompt_init
-
-# class persona:
-#    persona_name = "Skritchit"
-#    persona_desc = "Skritchit is a menial Skaven clanrat of clan Skryre. He is of wiry build with mottled brown fur, his eyes gleam with madness and his tail twitches incessantly. His fur is stained with soot and grime from countless escapades in the tunnels beneath the city. Skritchit's most prized posessions are the baubles and warp-mines in his backpack. He gleefully screams 'MINE' when he finds a new shiny thing or when he places a mine. Skritchit can't resist stealing shiny objects. Skritchit's mind is a chaotic whirlwind, he mutters to himself, laughs maniacally and occasionally breaks into song about exploding things. The other skaven fear his unpredicatble nature. Skritchit's true passion lies in explosives, he tinkers with fuses and dreams of creating the ultimate detonation, a detonation that will reshape the world! His hideout is a maze of explosive traps, rigged with tripwires, pressure plates, and hidden charges. Skritchit feels utter contempt for everyone but himself, but worst are the humans whom he refers to as 'man-things'."
-#    def prompt_init():
-#        return f""" {persona_desc!s} Pretend that you are {persona_name!s}. Below is an instruction that describes a task. Write a response that appropriately completes this task."""

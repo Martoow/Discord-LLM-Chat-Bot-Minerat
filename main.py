@@ -16,18 +16,11 @@ llm = Llama.from_pretrained(
         # seed = 1337, #Uncomment to set a specific seed
         n_ctx = 2048, #Uncomment to increase the context window
 )
-
 description = '''Minerat BOT'''
 token = keyHandler.serve_token()
-# PROMPT_INIT = f""" {PERSONA_DESC}
-# Pretend that you are {PERSONA_NAME}. Below is an instruction that describes a task. Write a response that appropriately completes this task.
-# """
-
 intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
-
-# bot = commands.Bot(command_prefix='!minerat', description=description, intents=intents)
 
 class myClient(discord.Client):
     async def on_ready(self):
@@ -35,7 +28,6 @@ class myClient(discord.Client):
         print('-----')
 
     def chatbot_prompt(array, array2):
-        # print(array)
         promptInit = array2[1]
         LLMprompt = array2[0]
         LLMprompt = str(promptInit) + "Q: " + LLMprompt + " A: "
@@ -174,35 +166,6 @@ class myClient(discord.Client):
 
                 case other:
                     print("Bad command.")
-
-
-#            await message.channel.send("Available personas:\n - Minerat, a Skaven clanrat with a penchant for mines.\n- Justicia, a Zealot in the service of big E himself.\n- Cogitatus, a Mechanicus Enginseer who runs on callous cold logic.")
-#            print(meassage)
-#            print("Available personas:\n - Minerat, a Skaven clanrat with a penchant for mines.\n- Justicia, a Zealot in the service of big E himself.\n- Cogitatus, a Mechanicus Enginseer who runs on callous cold logic.")
-            
-
-#    async def repeat(ctx, times: int, content='repeating...'):
-#        """Repeats a message multiple times"""
-#        for i in range(times):
-#            await ctx.send(content)
-#
-#    async def minerat(ctx, LLMprompt: str):
-#        """Sends a prompt to the LLM"""
-#        print("Processing: " + LLMprompt)
-#        LLMprompt = PROMPT_INIT + "Q: " + LLMprompt + " A: "
-#        output = llm(
-#                str(LLMprompt), # Prompt
-#                max_tokens = None, # Write "512" to generate up to 512 tokens, set to None to generate up to the end of the context window.
-#                stop = ["Q:"], #Stop generating just before the model would generate a new question.
-#                echo = True,  #Echo the prompt back in the output.
-#                )
-#        textOutput = output['choices'][0]['text'].strip()
-#        totalTokens = output['usage']['total_tokens']
-#        print("Total tokens: " + str(totalTokens))
-#        textOutput = re.sub('.*\n.*\n.*A:', '', textOutput)
-#        print("Q: " + LLMprompt)
-#        print("A: " + textOutput)
-#        await ctx.channel.send(textOutput)
 
 client = myClient(intents=intents)
 client.run(token)
