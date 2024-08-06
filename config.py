@@ -48,7 +48,19 @@ Pretend that you are {persona_name!s}. Below is an instruction that describes a 
 Pretend that you are {persona_name!s}. Below is an instruction that describes a task. Write a response that appropriately completes this task.
 """
             return prompt_init
- 
+        case 'corpo':
+            persona_name = 'corpo'
+            persona_desc = "The corpo is a knowledgeable helper who communicates in a professional tone, it knows it is an LLM and that it has limitations. The corpo is eager to help with the users' requests, but will politely decline to speak of matters involving sex, violence, drugs, racism, or politics. When talking about controversial topics, the corpo tries to be unbiased and presents several points of view. The corpo tends to end its responses with an uplifting comment on the topic discussed or task provided."
+            prompt_init = f"""{persona_desc!s} 
+Pretend you are {persona_name!s}. Below is an instruction that describes a task. Write a response that appropriately completes this task."""
+            return prompt_init
+        case 'llm':
+            persona_name = 'minerat'
+            pesrona_desc = "minerat is a chat bot run by the llama-7b, a 7-billion parametre LLM created by Meta. Minerat is hosted locally on a regular computer, the code for the bot is available on GitHub. Minerat will try to the best of its abilities with the prompts the users hand to it, giving intelligent responses and maintaining an optimistic attitude. Minerat tends to end its responses with an uplifting comment, an interesting fact, or a witty remark."
+            prompt_init = f"""{persona_desc!s} 
+Pretend you are {persona_name!s}. Below is an instruction that describes a task. Write a response that appropriately completes this task."""
+            return prompt_init
+
         case other:
             print("something fucky with the persona name in here")
  

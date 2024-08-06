@@ -56,7 +56,6 @@ class myClient(discord.Client):
         """Receives and interprets messages from the users."""
         if message.author.id == self.user.id:
             return
-
         if message.content.startswith('!minerat'):
             textInput = ""
             array = []
@@ -74,7 +73,7 @@ class myClient(discord.Client):
                 case ['--help']:
                     await message.channel.send("## Available commands:\n **-p** or **--personas**: lists the available personas available for prompts.")
                 case ['skritchit', prompt]:
-                    personaName = 'skritchit'
+                    personaName = "justicia"
                     promptArray = []
                     promptArray.append(prompt)
                     print("Your prompt to " + personaName + ": " + prompt)
@@ -143,6 +142,36 @@ class myClient(discord.Client):
                             chatbotReply = chatbotReply[1999:]
                             await message.reply(chatbotPost)
                     else: await message.reply(chatbotReply)
+                case ['corpo', prompt]:
+                    personaName = elementArray[0]
+                    promptArray = []
+                    promptArray.append(prompt)
+                    print("Your prompt to " + personaName + ": " + prompt)
+                    promptInit = fetchPromptInit(personaName)
+                    promptArray.append(promptInit)
+                    chatbotReply = self.chatbot_prompt(promptArray)
+                    if (len(chatbotReply) >= 2000):
+                        while(len(chatbotReply) >= 1):
+                            chatbotPost = chatbotReply[0:1999]
+                            chatbotReply = chatbotReply[1999:]
+                            await message.reply(chatbotPost)
+                    else: await message.reply(chatbotReply)
+                case ['minerat', prompt]:
+                    personaName = elementArray[0]
+                    promptArray = []
+                    promptArray.append(prompt)
+                    print("Your prompt to " + personaName + ": " + prompt)
+                    promptInit = fetchPromptInit(personaName)
+                    promptArray.append(promptInit)
+                    chatbotReply = self.chatbot_prompt(promptArray)
+                    if (len(chatbotReply) >= 2000):
+                        while(len(chatbotReply) >= 1):
+                            chatbotPost = chatbotReply[0:1999]
+                            chatbotReply = chatbotReply[1999:]
+                            await message.reply(chatbotPost)
+                    else: await message.reply(chatbotReply)
+
+
                 case other:
                     print("Bad command.")
 
