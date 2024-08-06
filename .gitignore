@@ -10,3 +10,6 @@ keyHandler.py
 
 # ignore the pycache__/
 __pycache__/
+
+# Exceptions
+!requirements.txt
