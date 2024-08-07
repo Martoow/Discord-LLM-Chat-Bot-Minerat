@@ -1,0 +1,10 @@
+{
+  "config":{
+    "repo_id":"TheBloke/Llama-2-7B-Chat-GGUF",
+    "filename":"*Q3_K_M.gguf",
+    "verbose":False,
+    "n_gpu_layers":-1,
+    "seed":1337,
+    "n_context":2048,
+  }
+}

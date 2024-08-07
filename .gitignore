@@ -1,9 +1,18 @@
 #ignore the venv direcories
 /venv
 
+# ignore image files
+*.jpg
+*.bmp
+*.png
+
 # ignore key files and txt
 *.txt
 *.key
+
+# ignore personal config files
+LLMConfig.json
+personas.json
 
 # ignore the python key handler script
 keyHandler.py

@@ -7,7 +7,6 @@ import csv
 from llama_cpp import Llama
 from config import fetchPromptInit
 
-TOKEN = keyHandler.serve_token()
 llm = Llama.from_pretrained(
         repo_id="TheBloke/Llama-2-7B-Chat-GGUF",
         filename="*Q3_K_M.gguf",
