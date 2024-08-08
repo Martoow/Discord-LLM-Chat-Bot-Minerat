@@ -7,6 +7,7 @@ import csv
 
 from llama_cpp import Llama
 from config import fetchPromptInit
+from parseJson import fetchPersona
 
 llm = Llama.from_pretrained(
         repo_id="TheBloke/Llama-2-7B-Chat-GGUF",
@@ -16,6 +17,7 @@ llm = Llama.from_pretrained(
         # seed = 1337, #Uncomment to set a specific seed
         n_ctx = 2048, #Uncomment to increase the context window
 )
+
 description = '''Minerat BOT'''
 TOKEN = keyHandler.serve_token()
 # intents = discord.Intents.default()
@@ -38,6 +40,7 @@ async def on_message(message:discord.Message) -> None:
 
 @bot.command()
 async def ping(ctx: commands.Context) -> None:
+    print("ping " + str(bot.latency * 1000) + "ms")
     await ctx.send(f"> Pong! {round(bot.latency * 1000)}ms")
 
 @bot.hybrid_command()
@@ -53,6 +56,13 @@ async def echo(ctx: commands.context, message: str) -> None:
         The message to echo
     """
     await ctx.reply(message)
+
+@bot.command()
+async def personas(ctx: commands.Context) -> None:
+    personasObj = fetchPersona()
+    for item in personasObj["persona"]:
+        print(item + " --> " + personasObj["persona"][item]["description"])
+    await ctx.reply(str(personasObj))
 
 
 
