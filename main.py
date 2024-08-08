@@ -5,20 +5,10 @@ from discord.ext import commands
 import re
 import csv
 
-from llama_cpp import Llama
 from config import fetchPromptInit
-from parseJson import fetchPersona, fetchLLMConfig
+from parseJson import fetchPersona
+from languageModel import initiateLLM, constructPost
 
-llmObj = fetchLLMConfig()
-print(llmObj)
-llm = Llama.from_pretrained(
-        repo_id = llmObj["config"]["repo_id"],
-        filename = llmObj["config"]["filename"],
-        verbose = llmObj["config"]["verbose"],
-        # n_gpu_layers = llmObj["config"]["n_gpu_layers"], #Uncomment to use GPU accelleration
-        # seed = llmObj["config"]["seed"], #Uncomment to set a specific seed
-        n_ctx = llmObj["config"]["n_context"], #Uncomment to increase the context window
-)
 
 TOKEN = keyHandler.serve_token()
 # intents = discord.Intents.default()
@@ -65,7 +55,20 @@ async def personas(ctx: commands.Context) -> None:
         print(item + " --> " + personasObj["persona"][item]["description"])
     await ctx.reply(str(personasObj))
 
+@bot.hybrid_command()
+async def prompt(ctx:commands.Context, message: str) -> None:
+    """
+    Takes a prompt and passes it to the LLM for a response.
 
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    message: str
+        The message that is passed to the LLM as a prompt.
+    """
+    response = constructPost(message)
+    await ctx.reply(response)
 
 bot.run(TOKEN)
 
