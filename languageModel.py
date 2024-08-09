@@ -9,7 +9,7 @@ def initiateLLM():
             repo_id=llmObj["config"]["repo_id"],
             filename=llmObj["config"]["filename"],
             verbose=llmObj["config"]["verbose"],
-            # n_gpu_layers=llmObj["config"]["n_gpu_layers"], #Uncomment to use GPU accelleration
+            n_gpu_layers=llmObj["config"]["n_gpu_layers"],
             # seed=llmObj["config"]["seed"], #Uncomment to set a specific seed
             n_ctx=llmObj["config"]["n_context"],  # Uncomment to increase the context window
     )
