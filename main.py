@@ -59,7 +59,7 @@ async def personas(ctx: commands.Context) -> None:
 
 
 @bot.hybrid_command()
-async def prompt(ctx: commands.Context, message: str) -> None:
+async def prompt(ctx: commands.Context, persona: str, message: str) -> None:
     """
     Takes a prompt and passes it to the LLM for a response.
 
@@ -70,7 +70,7 @@ async def prompt(ctx: commands.Context, message: str) -> None:
     message: str
         The message that is passed to the LLM as a prompt.
     """
-    response = constructPost(message)
+    response = constructPost(persona, message)
     if (len(response) >= 2000):
         while (len(response) >= 1):
             chatbotPost = response[0:1999]
