@@ -21,8 +21,8 @@ def constructPost(prompt):
     Takes the prompt from the user, passes it to the language model, constructs a response and sends it back to the main function to be posted to the relevant channel.
     """
     personaObj = fetchPersona()
-    name = personaObj["persona"]["scriptus"]["name"]
-    definition = personaObj["persona"]["scriptus"]["definition"]
+    name = personaObj["persona"]["professional"]["name"]
+    definition = personaObj["persona"]["professional"]["definition"]
     print("Your prompt to " + name + ": " + prompt)
     promptInit = f'''{definition!s} Pretend your are {name!s}. Below is an instruction that describes a task, write a response that appropriately completes the task.'''
     prompt = promptInit + " Q: " + prompt
