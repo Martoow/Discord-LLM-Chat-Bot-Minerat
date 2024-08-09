@@ -10,7 +10,7 @@ def fetchPersona():
         print("Error: No 'personas.json' file exists; remember to rename the template accordingly.")
 
 def fetchLLMConfig():
-    file_path = "LLMConfigTemplate.json"
+    file_path = "LLMConfig.json"
     try:
         with open(file_path, "r") as file:
             llmObj = json.load(file)

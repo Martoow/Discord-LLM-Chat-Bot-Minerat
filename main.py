@@ -1,13 +1,9 @@
-import os
 import keyHandler
 import discord
 from discord.ext import commands
-import re
-import csv
 
-from config import fetchPromptInit
 from parseJson import fetchPersona
-from languageModel import initiateLLM, constructPost
+from languageModel import constructPost
 
 
 TOKEN = keyHandler.serve_token()
@@ -16,12 +12,15 @@ TOKEN = keyHandler.serve_token()
 # intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+
+
 @bot.event
 async def on_ready() -> None:
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
 
+
 @bot.event
-async def on_message(message:discord.Message) -> None:
+async def on_message(message: discord.Message) -> None:
     if message.author.bot:
         return
     if message.content == "Hello":
@@ -29,10 +28,12 @@ async def on_message(message:discord.Message) -> None:
 
     await bot.process_commands(message)
 
+
 @bot.command()
 async def ping(ctx: commands.Context) -> None:
     print("ping " + str(bot.latency * 1000) + "ms")
     await ctx.send(f"> Pong! {round(bot.latency * 1000)}ms")
+
 
 @bot.hybrid_command()
 async def echo(ctx: commands.context, message: str) -> None:
@@ -48,6 +49,7 @@ async def echo(ctx: commands.context, message: str) -> None:
     """
     await ctx.reply(message)
 
+
 @bot.command()
 async def personas(ctx: commands.Context) -> None:
     personasObj = fetchPersona()
@@ -55,8 +57,9 @@ async def personas(ctx: commands.Context) -> None:
         print(item + " --> " + personasObj["persona"][item]["description"])
     await ctx.reply(str(personasObj))
 
+
 @bot.hybrid_command()
-async def prompt(ctx:commands.Context, message: str) -> None:
+async def prompt(ctx: commands.Context, message: str) -> None:
     """
     Takes a prompt and passes it to the LLM for a response.
 
@@ -68,7 +71,13 @@ async def prompt(ctx:commands.Context, message: str) -> None:
         The message that is passed to the LLM as a prompt.
     """
     response = constructPost(message)
-    await ctx.reply(response)
+    if (len(response) >= 2000):
+        while (len(response) >= 1):
+            chatbotPost = response[0:1999]
+            response = response[1999:]
+            await ctx.reply(chatbotPost)
+    else:
+        await ctx.reply(response)
 
 bot.run(TOKEN)
 
