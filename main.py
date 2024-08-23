@@ -1,8 +1,8 @@
 import keyHandler
 import discord
 from discord.ext import commands
-
 from parseJson import fetchPersona
+from imageGen import generateImage
 from languageModel import constructPost
 
 
@@ -25,7 +25,6 @@ async def on_message(message: discord.Message) -> None:
         return
     if message.content == "Hello":
         await message.channel.send("Hi! ")
-
     await bot.process_commands(message)
 
 
@@ -33,6 +32,12 @@ async def on_message(message: discord.Message) -> None:
 async def ping(ctx: commands.Context) -> None:
     print("ping " + str(bot.latency * 1000) + "ms")
     await ctx.send(f"> Pong! {round(bot.latency * 1000)}ms")
+
+
+@bot.hybrid_command()
+async def image(ctx: commands.Context, prompt: str) -> None:
+    imageFilePath = generateImage(prompt)
+    await ctx.reply(file=discord.File(imageFilePath))
 
 
 @bot.hybrid_command()
@@ -78,5 +83,6 @@ async def prompt(ctx: commands.Context, persona: str, message: str) -> None:
             await ctx.reply(chatbotPost)
     else:
         await ctx.reply(response)
+
 
 bot.run(TOKEN)
