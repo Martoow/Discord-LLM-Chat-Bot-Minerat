@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 from parseJson import fetchPersona
 from imageGen import generateImage
-from languageModel import constructPost
+from languageModel import generateResponse, testNewLLM
 
 
 TOKEN = keyHandler.serve_token()
@@ -63,8 +63,14 @@ async def personas(ctx: commands.Context) -> None:
     await ctx.reply(str(personasObj))
 
 
+@bot.command()
+async def test(ctx: commands.Context) -> None:
+    response = testNewLLM()
+    await ctx.reply(response)
+
+
 @bot.hybrid_command()
-async def prompt(ctx: commands.Context, persona: str, message: str) -> None:
+async def prompt(ctx: commands.Context, message: str) -> None:
     """
     Takes a prompt and passes it to the LLM for a response.
 
@@ -75,7 +81,7 @@ async def prompt(ctx: commands.Context, persona: str, message: str) -> None:
     message: str
         The message that is passed to the LLM as a prompt.
     """
-    response = constructPost(persona, message)
+    response = generateResponse(message)
     if (len(response) >= 2000):
         while (len(response) >= 1):
             chatbotPost = response[0:1999]
