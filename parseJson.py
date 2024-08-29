@@ -42,3 +42,14 @@ def saveHistory(user_id, history):
     with open(os.path.join(save_path, completename), "w") as file:
         file.write(json.dumps(history))
     return
+
+def removeHistory(user_id):
+    file_path = "./user_history/" + user_id + ".json"
+    try:
+        os.remove(file_path)
+        print("+++RECORDS PURGED+++")
+        return True
+    except:
+        print("+++UNABLE TO PURGE RECORDS+++")
+        return False
+

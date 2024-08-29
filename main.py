@@ -2,7 +2,7 @@ from __future__ import annotations
 import keyHandler
 import discord
 from discord.ext import commands
-from parseJson import fetchPersona, fetchHistory, saveHistory
+from parseJson import fetchPersona, fetchHistory, saveHistory, removeHistory
 from imageGen import generateImage
 from languageModel import testNewLLM
 
@@ -53,6 +53,16 @@ async def echo(ctx: commands.context, message: str) -> None:
         The message to echo
     """
     await ctx.reply(message)
+
+
+@bot.command()
+async def purge(ctx: commands.Context) -> None:
+    user_id = str(ctx.message.author.id)
+    async with ctx.typing():
+        if (removeHistory(user_id)):
+            await ctx.reply("+++RECORDS SUCCESSFULLY PURGED+++")
+        else:
+            await ctx.reply("+++UNABLE TO PURGE RECORDS+++")
 
 
 @bot.command()
