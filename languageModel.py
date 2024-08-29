@@ -23,7 +23,7 @@ def testNewLLM(prompt):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     input_ids = tokenizer(str(prompt), return_tensors='pt').to('cuda')
     pipeline = transformers.pipeline('text-generation',config=quantization_config, model=quantized_model, tokenizer=tokenizer, max_new_tokens=512)
-    output = pipeline(prompt, max_new_tokens=512)
+    output = pipeline(prompt, max_new_tokens=1024)
     print(output[0]['generated_text'][-1])
     response = output[0]['generated_text'][-1]['content']
     print(response)
