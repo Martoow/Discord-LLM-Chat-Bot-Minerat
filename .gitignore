@@ -20,9 +20,10 @@ keyHandler.py
 # ignore the pycache__/
 __pycache__/
 
-# ignor the contents of the extension folder
+# ignore the contents of the folders
 extensions/*
 images/*
+user_history/*
 
 # Exceptions
 !requirements.txt
