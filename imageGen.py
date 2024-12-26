@@ -20,7 +20,7 @@ def generateString():
 def generateImage(prompt):
     ckpt_id = "black-forest-labs/FLUX.1-schnell"
     # prompt = []
-    height, width = 1440, 2560
+    height, width = 1024, 1024
 
     # denoising
     pipe = FluxPipeline.from_pretrained(
@@ -33,7 +33,7 @@ def generateImage(prompt):
 
     image = pipe(
         prompt,
-        num_inference_steps=2,
+        num_inference_steps=5,
         guidance_scale=0.0,
         height=height,
         width=width,
